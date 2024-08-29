@@ -1,0 +1,47 @@
+# Directorios de compilación y binarios
+/bin/
+/build/
+/out/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos generados por Go
+*.test
+*.prof
+
+# Directorios de dependencias
+/pkg/
+/vendor/
+
+# Archivos de configuración y caché
+/.env
+/.vscode/
+/.idea/
+/*.iml
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos del editor
+*.swp
+*.swo
+*.swn
+*~
+*.bak
+
+# Archivos temporales de logs
+*.log
+
+# Archivos de depuración
+*.out
+
+# Go module cache
+/go.sum
+/go.mod
+
+# Archivos de cobertura de pruebas
+coverage.out
