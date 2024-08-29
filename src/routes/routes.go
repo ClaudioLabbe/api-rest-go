@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"api-rest-go/controllers"
+	"api-rest-go/src/controllers"
 
 	"github.com/gin-gonic/gin"
 )

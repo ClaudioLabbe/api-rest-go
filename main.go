@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 
-	"api-rest-go/routes"
+	"api-rest-go/src/routes"
 )
 
 func main() {

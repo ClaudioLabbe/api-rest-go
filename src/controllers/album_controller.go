@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"api-rest-go/models"
+	"api-rest-go/src/models"
 )
 
 func GetAllAlbum(g *gin.Context) {
