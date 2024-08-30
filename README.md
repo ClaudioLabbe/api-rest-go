@@ -6,7 +6,7 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
 
 - CRUD para Álbumes
 - Arquitectura organizada en controladores y rutas
-- Uso de variables globales como almacenamiento temporal de datos (sin base de datos)
+- Configuracion con coneccion a PostgreSQL
 
 ## Requisitos Previos
 
@@ -23,6 +23,16 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
 2. **Instala las dependencias:**
     ```bash
     go get -u github.com/gin-gonic/gin
+    go get -u gorm.io/gorm
+    go get github.com/joho/godotenv
+
+3. **Crear .env para las variables de entorno**
+
+    DB_HOST=localhost
+    DB_PORT=puerto
+    DB_USER=tu_usuario
+    DB_PASSWORD=tu_contraseña
+    DB_NAME=tu_base_de_datos
 
 ## Ejecución:
     go run main.go
