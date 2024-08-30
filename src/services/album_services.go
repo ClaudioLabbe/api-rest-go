@@ -6,14 +6,21 @@ import (
 	"log"
 )
 
+func firstAlbum(album *models.Album, id int) error {
+	result := config.DB.First(&album, id)
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
 func GetAlbumById(id int) (*models.Album, error) {
 	var album models.Album
 
-	result := config.DB.First(&album, id)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return &album, nil
+	err := firstAlbum(&album, id)
+
+	return &album, err
 }
 
 func GetAllAlbum() []models.Album {
@@ -40,12 +47,12 @@ func UpdateAlbumById(updateAlbum models.Album, id int) (*models.Album, error) {
 
 	var album models.Album
 
-	result := config.DB.First(&album, id)
-	if result.Error != nil {
-		return nil, result.Error
+	err := firstAlbum(&album, id)
+	if err != nil {
+		return nil, err
 	}
 
-	result = config.DB.Model(&album).Updates(updateAlbum)
+	result := config.DB.Model(&album).Updates(updateAlbum)
 
 	if result.Error != nil {
 		return nil, result.Error
@@ -58,12 +65,12 @@ func DeleteAlbum(id int) error {
 	var albums []models.Album
 	var album models.Album
 
-	result := config.DB.First(&album, id)
-	if result.Error != nil {
-		return result.Error
+	err := firstAlbum(&album, id)
+	if err != nil {
+		return err
 	}
 
-	result = config.DB.Delete(&albums, id)
+	result := config.DB.Delete(&albums, id)
 
 	if result.Error != nil {
 		return result.Error
