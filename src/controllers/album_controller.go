@@ -12,8 +12,8 @@ import (
 	"gorm.io/gorm"
 )
 
-const id_invalid = "ID inválido"
-const Album_not_found = "Álbum no encotrado"
+const id_invalid = "Invalid ID"
+const Album_not_found = "Album not found"
 
 func GetAllAlbum(g *gin.Context) {
 
@@ -21,7 +21,7 @@ func GetAllAlbum(g *gin.Context) {
 
 	// Verifica si hay datos para devolver
 	if albums == nil {
-		g.JSON(http.StatusInternalServerError, gin.H{"error": "No se pudieron obtener los álbumes"})
+		g.JSON(http.StatusInternalServerError, gin.H{"error": "Could not get albums"})
 		return
 	}
 
@@ -60,11 +60,10 @@ func GetAlbumById(g *gin.Context) {
 			return
 		}
 		// Para otros errores, responde con un error 500 Internal Server Error
-		g.JSON(http.StatusInternalServerError, gin.H{"error": "Error al obtener el álbum"})
+		g.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting album"})
 		return
 	}
 
-	// c.IndentedJSON(http.StatusNotFound, gin.H{"message": "No such album"})
 	// Si no hay errores, devuelve el álbum encontrado
 	g.JSON(http.StatusOK, album)
 }
@@ -97,7 +96,7 @@ func UpdateAlbumById(g *gin.Context) {
 			return
 		}
 		// Para otros errores, responde con un error 500 Internal Server Error
-		g.JSON(http.StatusInternalServerError, gin.H{"error": "Error al actualizar el álbum"})
+		g.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating album"})
 		return
 	}
 
@@ -124,9 +123,9 @@ func DeleteAlbum(g *gin.Context) {
 			return
 		}
 		// Para otros errores, responde con un error 500 Internal Server Error
-		g.JSON(http.StatusInternalServerError, gin.H{"error": "Error al eliminar el álbum"})
+		g.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting album"})
 		return
 	}
 
-	g.JSON(http.StatusOK, gin.H{"message": "Album eliminado correctamente"})
+	g.JSON(http.StatusOK, gin.H{"message": "Album deleted successfully"})
 }

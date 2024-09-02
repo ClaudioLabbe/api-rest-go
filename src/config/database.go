@@ -41,4 +41,6 @@ func InitDb() {
 	}
 
 	DB.AutoMigrate(&models.Album{})
+	DB.AutoMigrate(&models.Rol{})
+	DB.AutoMigrate(&models.User{})
 }
