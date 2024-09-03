@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"api-rest-go/src/services"
+	"api-rest-go/src/utils"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -11,9 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
-
-const id_invalid = "Invalid ID"
-const Album_not_found = "Album not found"
 
 func GetAllAlbum(g *gin.Context) {
 
@@ -32,7 +30,7 @@ func PostAlbum(g *gin.Context) {
 	var newAlbum models.Album
 
 	if err := g.BindJSON(&newAlbum); err != nil {
-		g.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		g.JSON(http.StatusBadRequest, gin.H{"error": utils.Invalid_request})
 		return
 	}
 
@@ -48,7 +46,7 @@ func GetAlbumById(g *gin.Context) {
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
 		// Responder con un error si la conversión falla
-		g.JSON(http.StatusBadRequest, gin.H{"error": id_invalid})
+		g.JSON(http.StatusBadRequest, gin.H{"error": utils.Id_invalid})
 		return
 	}
 
@@ -56,7 +54,7 @@ func GetAlbumById(g *gin.Context) {
 	if err != nil {
 		// Si el error es gorm.ErrRecordNotFound, responde con un error 404 Not Found
 		if err == gorm.ErrRecordNotFound {
-			g.JSON(http.StatusNotFound, gin.H{"error": Album_not_found})
+			g.JSON(http.StatusNotFound, gin.H{"error": utils.Album_not_found})
 			return
 		}
 		// Para otros errores, responde con un error 500 Internal Server Error
@@ -75,7 +73,7 @@ func UpdateAlbumById(g *gin.Context) {
 	var updateAlbum models.Album
 
 	if err := g.BindJSON(&updateAlbum); err != nil {
-		g.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		g.JSON(http.StatusBadRequest, gin.H{"error": utils.Invalid_request})
 		return
 	}
 
@@ -83,7 +81,7 @@ func UpdateAlbumById(g *gin.Context) {
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
 		// Responder con un error si la conversión falla
-		g.JSON(http.StatusBadRequest, gin.H{"error": id_invalid})
+		g.JSON(http.StatusBadRequest, gin.H{"error": utils.Id_invalid})
 		return
 	}
 
@@ -92,7 +90,7 @@ func UpdateAlbumById(g *gin.Context) {
 	if err != nil {
 		// Si el error es gorm.ErrRecordNotFound, responde con un error 404 Not Found
 		if err == gorm.ErrRecordNotFound {
-			g.JSON(http.StatusNotFound, gin.H{"error": Album_not_found})
+			g.JSON(http.StatusNotFound, gin.H{"error": utils.Album_not_found})
 			return
 		}
 		// Para otros errores, responde con un error 500 Internal Server Error
@@ -110,7 +108,7 @@ func DeleteAlbum(g *gin.Context) {
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
 		// Responder con un error si la conversión falla
-		g.JSON(http.StatusBadRequest, gin.H{"error": id_invalid})
+		g.JSON(http.StatusBadRequest, gin.H{"error": utils.Id_invalid})
 		return
 	}
 
@@ -119,7 +117,7 @@ func DeleteAlbum(g *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 		if err == gorm.ErrRecordNotFound {
-			g.JSON(http.StatusNotFound, gin.H{"error": Album_not_found})
+			g.JSON(http.StatusNotFound, gin.H{"error": utils.Album_not_found})
 			return
 		}
 		// Para otros errores, responde con un error 500 Internal Server Error

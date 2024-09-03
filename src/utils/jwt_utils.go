@@ -1,12 +1,15 @@
 package utils
 
 import (
+	"fmt"
+	"os"
+	"strconv"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var jwtKey = []byte("your_secret_key")
+var jwtKey = []byte(os.Getenv("API_SECRET"))
 
 // Claims define la estructura de las claims del JWT
 type Claims struct {
@@ -16,11 +19,18 @@ type Claims struct {
 
 // Genera un nuevo token JWT para un usuario
 func GenerateJWT(email string) (string, error) {
+
+	expirationMinutesStr := os.Getenv("EXPIRATION_MINUTES")
+	expirationMinutes, err := strconv.Atoi(expirationMinutesStr)
+	if err != nil {
+		return "", fmt.Errorf("invalid JWT_EXPIRATION_MINUTES value: %v", err)
+	}
+
 	// Define las claims
 	claims := &Claims{
 		Email: email,
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(15 * time.Minute)), // Expira en 15 minutos
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(expirationMinutes) * time.Minute)), // Expira en 15 minutos
 		},
 	}
 

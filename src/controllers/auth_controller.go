@@ -16,14 +16,14 @@ func Login(c *gin.Context) {
 	}
 
 	if err := c.BindJSON(&credentials); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": utils.Invalid_request})
 		return
 	}
 
 	user, err := services.GetUserByEmail(credentials.Email)
 
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": utils.Invalid_credentials})
 		return
 	}
 
@@ -31,7 +31,7 @@ func Login(c *gin.Context) {
 
 	// Validación ficticia de usuario y contraseña
 	if response != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": utils.Invalid_credentials})
 		return
 	}
 
