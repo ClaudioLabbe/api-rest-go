@@ -1,6 +1,6 @@
 # API REST con Go y Gin
 
-Este proyecto es una API REST construida con el framework [Gin](https://github.com/gin-gonic/gin) en Go. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) para gestionar álbumes.
+Este proyecto es una API REST construida con el framework [Gin](https://github.com/gin-gonic/gin) en Go. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) para gestionar álbumes, usuarios y roles. También utiliza JWT para la autenticación..
 
 ## Características
 
@@ -40,6 +40,11 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
 Por defecto, el servidor se ejecutará en http://localhost:8080.
 
 ## Endpoints de la API
+
+**Login**
+| Método | Endpoint       | Descripción                              |
+|--------|----------------|------------------------------------------|
+| `POST`    | /login         | Crea token para la autenticación                |
 
 **API de Álbumes**
 
