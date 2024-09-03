@@ -25,6 +25,7 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
     go get -u gorm.io/gorm
     go get github.com/joho/godotenv
     go get golang.org/x/crypto/bcrypt
+    go get github.com/golang-jwt/jwt/v5
 3. **Crea un archivo .env en la raíz del proyecto para las variables de entorno**
     ```bash
     DB_HOST=localhost

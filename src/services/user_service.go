@@ -70,3 +70,14 @@ func DeleteUser(id int) error {
 
 	return nil
 }
+
+func GetUserByEmail(email string) (*models.User, error) {
+	var user models.User
+
+	err := config.DB.Preload("Rol").Where("email = ?", email).First(&user)
+	if err.Error != nil {
+		return nil, err.Error
+	}
+
+	return &user, err.Error
+}

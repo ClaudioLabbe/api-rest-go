@@ -1,7 +1,8 @@
 package models
 
 import (
-	"golang.org/x/crypto/bcrypt"
+	"api-rest-go/src/utils"
+
 	"gorm.io/gorm"
 )
 
@@ -21,16 +22,8 @@ func (User) TableName() string {
 	return "user"
 }
 
-func Hash(password string) ([]byte, error) {
-	return bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-}
-
-func VerifyPassword(passwordHashed string, password string) error {
-	return bcrypt.CompareHashAndPassword([]byte(passwordHashed), []byte(password))
-}
-
 func (u *User) BeforeSave(tx *gorm.DB) error {
-	passwordHashed, err := Hash(u.Password)
+	passwordHashed, err := utils.Hash(u.Password)
 
 	if err != nil {
 		return err
