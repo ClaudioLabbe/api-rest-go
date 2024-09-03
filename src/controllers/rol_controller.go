@@ -58,7 +58,7 @@ func PostRol(g *gin.Context) {
 		g.IndentedJSON(http.StatusPaymentRequired, response)
 		return
 	}
-	fmt.Println(rol)
+
 	menssage, err := services.CreateRol(rol)
 
 	if err != nil {

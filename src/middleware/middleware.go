@@ -35,7 +35,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 		}
 
 		// Establece las claims en el contexto
-		c.Set("username", claims.Email)
+		c.Set("email", claims.Email)
 		c.Next()
 	}
 }

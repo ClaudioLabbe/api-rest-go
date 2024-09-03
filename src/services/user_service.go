@@ -55,8 +55,6 @@ func DeleteUser(id int) error {
 	var users []models.User
 	var user models.User
 
-	fmt.Println(id)
-
 	err := firstUser(&user, id)
 	if err != nil {
 		return err

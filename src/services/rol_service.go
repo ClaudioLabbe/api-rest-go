@@ -55,8 +55,6 @@ func DeleteRol(id int) error {
 	var rols []models.Rol
 	var rol models.Rol
 
-	fmt.Println(id)
-
 	err := firstRol(&rol, id)
 	if err != nil {
 		return err

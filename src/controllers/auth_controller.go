@@ -3,7 +3,6 @@ package controllers
 import (
 	"api-rest-go/src/services"
 	"api-rest-go/src/utils"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,8 +19,6 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}
-
-	fmt.Println(credentials)
 
 	user, err := services.GetUserByEmail(credentials.Email)
 
