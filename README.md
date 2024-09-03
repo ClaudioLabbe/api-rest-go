@@ -34,6 +34,7 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
     DB_PASSWORD=tu_contraseña
     DB_NAME=tu_base_de_datos
     API_SECRET=tu_api_secret
+    EXPIRATION_MINUTES=minutos_de_expiracion_token
 ## Ejecución:
     go run main.go
 
