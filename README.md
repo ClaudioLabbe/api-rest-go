@@ -4,8 +4,8 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
 
 ## Características
 
-- CRUD para Álbumes
-- Arquitectura organizada en controladores y rutas
+- CRUD para Álbumes, Usuarios y Roles
+- Arquitectura organizada en controladores, servicios, modelos y rutas
 - Configuración con conexión a PostgreSQL
 
 ## Requisitos Previos
@@ -33,6 +33,7 @@ Este proyecto es una API REST construida con el framework [Gin](https://github.c
     DB_USER=tu_usuario
     DB_PASSWORD=tu_contraseña
     DB_NAME=tu_base_de_datos
+    API_SECRET=tu_api_secret
 ## Ejecución:
     go run main.go
 
@@ -42,7 +43,7 @@ Por defecto, el servidor se ejecutará en http://localhost:8080.
 
 **API de Álbumes**
 
-Esta API permite gestionar álbumes a través de varios endpoints.
+Permite gestionar álbumes a través de varios endpoints.
 
 | Método | Endpoint       | Descripción                              |
 |--------|----------------|------------------------------------------|
@@ -51,3 +52,23 @@ Esta API permite gestionar álbumes a través de varios endpoints.
 | `POST`   | /album         | Crea un nuevo álbum                      |
 | `PATCH`  | /album/:id     | Actualiza un álbum por su ID             |
 | `DELETE` | /album/:id     | Elimina un álbum por su ID               |
+
+**API de Usuarios**
+
+Permite gestionar Usuarios a través de varios endpoints.
+| Método | Endpoint       | Descripción                              |
+|--------|----------------|------------------------------------------|
+| `GET`    | /user         | Obtiene todos los usuarios                |
+| `GET`    | /user/:id     | Obtiene un usuario por su ID               |
+| `POST`   | /user         | Crea un nuevo usuario                      |
+| `DELETE` | /user/:id     | Elimina un usuario por su ID               |
+
+**API de Roles**
+
+Permite gestionar Roles a través de varios endpoints.
+| Método | Endpoint       | Descripción                              |
+|--------|----------------|------------------------------------------|
+| `GET`    | /rol         | Obtiene todos los roles                |
+| `GET`    | /rol/:id     | Obtiene un rol por su ID               |
+| `POST`   | /rol         | Crea un nuevo rol                      |
+| `DELETE` | /rol/:id     | Elimina un rol por su ID               |
