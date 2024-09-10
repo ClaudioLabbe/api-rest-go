@@ -12,6 +12,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Obtiene el token del header Authorization
 		authHeader := c.GetHeader("Authorization")
+
 		if authHeader == "" {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization header is missing"})
 			c.Abort()
@@ -34,8 +35,32 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
+		if !isAuthorized(claims, c.FullPath()) {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Not authorized"})
+			c.Abort()
+			return
+		}
+
 		// Establece las claims en el contexto
 		c.Set("email", claims.Email)
 		c.Next()
 	}
+}
+
+func isAuthorized(claims *utils.Claims, path string) bool {
+
+	switch claims.Rol {
+	case "User":
+		if strings.HasPrefix(path, "/album/") {
+			return true
+		}
+	case "Owner":
+		return true
+	case "Admin":
+		return true
+	default:
+		return false
+	}
+
+	return false
 }

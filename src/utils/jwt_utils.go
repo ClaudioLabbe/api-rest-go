@@ -14,11 +14,12 @@ var jwtKey = []byte(os.Getenv("API_SECRET"))
 // Claims define la estructura de las claims del JWT
 type Claims struct {
 	Email string `json:"email"`
+	Rol   string `json:"rol"`
 	jwt.RegisteredClaims
 }
 
 // Genera un nuevo token JWT para un usuario
-func GenerateJWT(email string) (string, error) {
+func GenerateJWT(email string, rol string) (string, error) {
 
 	expirationMinutesStr := os.Getenv("EXPIRATION_MINUTES")
 	expirationMinutes, err := strconv.Atoi(expirationMinutesStr)
@@ -29,6 +30,7 @@ func GenerateJWT(email string) (string, error) {
 	// Define las claims
 	claims := &Claims{
 		Email: email,
+		Rol:   rol,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(expirationMinutes) * time.Minute)), // Expira en 15 minutos
 		},
