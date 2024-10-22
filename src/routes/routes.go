@@ -44,4 +44,25 @@ func RegisterRouter(g *gin.Engine) {
 		user.DELETE(byId, controllers.DeleteUser)
 	}
 
+	product := g.Group("/product")
+
+	product.Use(middleware.JWTAuthMiddleware())
+	{
+		product.GET("/", controllers.GetAllProducts)
+		product.POST("/", controllers.PostProduct)
+		product.GET(byId, controllers.GetProductById)
+		product.PATCH(byId, controllers.UpdateProductById)
+		product.DELETE(byId, controllers.DeleteProduct)
+	}
+
+	category := g.Group("/category")
+
+	category.Use(middleware.JWTAuthMiddleware())
+	{
+		category.GET("/", controllers.GetAllcategories)
+		// category.POST("/", controllers.PostCategory)
+		// category.GET(byId, controllers.GetCategoryById)
+		// category.PATCH(byId, controllers.UpdateCategoryById)
+		// category.DELETE(byId, controllers.DeleteCategory)
+	}
 }
