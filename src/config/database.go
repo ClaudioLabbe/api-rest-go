@@ -43,4 +43,8 @@ func InitDb() {
 	DB.AutoMigrate(&models.Album{})
 	DB.AutoMigrate(&models.Rol{})
 	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.Category{})
+	DB.AutoMigrate(&models.Product{})
+	DB.AutoMigrate(&models.Sale{})
+	DB.AutoMigrate(&models.SalesDetails{})
 }

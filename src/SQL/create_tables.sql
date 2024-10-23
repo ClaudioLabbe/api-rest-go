@@ -54,7 +54,8 @@ CREATE TABLE PurchaseOrderDetails (
 CREATE TABLE Sales (
     id SERIAL PRIMARY KEY,
     sale_date TIMESTAMPTZ DEFAULT NOW(),
-    total DECIMAL(10, 2),
+    name VARCHAR(255) NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ,
     deleted_at TIMESTAMPTZ

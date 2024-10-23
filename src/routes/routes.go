@@ -65,4 +65,14 @@ func RegisterRouter(g *gin.Engine) {
 		// category.PATCH(byId, controllers.UpdateCategoryById)
 		// category.DELETE(byId, controllers.DeleteCategory)
 	}
+
+	sale := g.Group("/sale")
+
+	sale.Use(middleware.JWTAuthMiddleware())
+	{
+		sale.POST("/", controllers.PostSale)
+		// sale.GET("/", controllers.GetAllSales)
+		// sale.GET(byId, controllers.GetSaleById)
+		// sale.DELETE(byId, controllers.DeleteSale)
+	}
 }
